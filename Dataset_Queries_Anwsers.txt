@@ -1,0 +1,351 @@
+1.	Print How many states are represented in the dataset.
+Ans: 
+
+cat(length(unique(Aadhar[,3])))
+----------------------------------------------------------------------------------
+2.	Print all the states where name starting from “An”.
+Ans:
+
+library(stringr)
+aa=(unique(Aadhar[,3]))
+cat("State with name starting with 'An' is")
+print(subset(aa,str_detect(aa,"An")))
+-----------------------------------------------------------------------------------------
+3.	Print all the states where 2 alphabet will repeat together .(Ex: - Uttar Pradesh , Assam).
+Ans:
+
+library(stringr)
+UniqueStates=as.vector((unique(Aadhar$State)))
+DupOF=UniqueStates
+UniqueStates=as.vector(str_split(UniqueStates,""))
+EmptyVec1=vector()
+EmptyVec2=vector()
+for(i in 1:length(UniqueStates)){
+  for(j in 1:length(UniqueStates[[i]])){
+    if(UniqueStates[[i]][j] %in% EmptyVec1[]){
+      EmptyVec2=c(EmptyVec2,DupOF[[i]])
+      EmptyVec1=vector()
+    }else{
+      EmptyVec1=vector()
+      EmptyVec1=c(EmptyVec1,UniqueStates[[i]][j])
+    }
+  }
+}
+print("States with consecutive repeated elements are ")
+print(unique(EmptyVec2))
+----------------------------------------------------------------------------------------------
+4.	Print all the states where one alphabet will repeat more then 2 times.(Ex. a in Karnatka).
+Ans:
+
+library(stringr)
+SDF=as.vector((unique(Aadhar$State)))
+DupOFio=SDF
+SDF=as.vector(str_split(SDF,""))
+SDFu=vector()
+SDFui=vector()
+for(i in 1:length(SDF)){
+  for(j in 1:length(SDF[[i]])){
+    if(SDF[[i]][j] %in% SDFu[]){
+      SDFui=c(SDFui,DupOFio[[i]])
+    }else{
+      SDFu=c(SDFu,SDF[[i]][j])
+    }
+  }
+  SDFu=vector()
+}
+print("States with consecutive repeated elements are ")
+print(unique(SDFui))
+------------------------------------------------------------------------------
+5.	 Print all the states where last 4th latter will be “g”. (Ex: Chhattisgarh)…….
+Ans:
+
+library(stringr)
+frui=as.vector(unique(Aadhar$State))
+fti=frui
+for(i in 1:37){
+  frui[i]=str_split(frui[i],"")
+}
+print("states with letter g in 4th position from last are:")
+for(i in 1:37){
+  lli=length(frui[[i]])
+  for(j in lli){
+    if(lli>5 &&
+       frui[[i]][lli-3]=='g'){
+      print(fti[[i]])
+    }
+  }
+}
+-----------------------------------------------------------------
+6.	Print total count of states.(Ex: Bihar  - 2 , Andhra Pradesh – 10)….
+Ans:
+
+fg=Aadhar$State
+hju=table(fg)
+print("no.of times each district repeated:")
+print(hju)
+------------------------------------------------------------------
+7.	Print all the rows from the column Enrolment Agency where keyword is “India”…...
+Ans:
+
+library(stringr)
+ab=(unique(Aadhar[,2]))
+print("Enrollment agencies with '-' is:")
+print(subset(ab,str_detect(ab,"India")))
+-------------------------------------------------------------------------
+8.	Print all the rows from the column Enrolment Agency where “-” is available.(EX: A-Onerealtors Pvt Ltd)…...
+Ans:
+
+library(stringr)
+ab=(unique(Aadhar[,2]))
+print("Enrollment agencies with '-' is:")
+print(subset(ab,str_detect(ab,"-")))
+-------------------------------------------------------------------------
+9.	Print total count of Enrolment Agency which are “Pvt Ltd”……..
+Ans:
+
+library(stringr)
+ab=(unique(Aadhar[,2]))
+print("Enrollment agencies with 'Pvt Ltd' is:")
+pvt=subset(ab,str_detect(ab,"Pvt Ltd"))
+print(length(pvt))
+-------------------------------------------------------------------------
+10.	Print all the rows from the column Enrolment Agency where more the three alphabets available in capital letters together.(EX: Atalji Janasnehi Directorate  GOK)……….
+Ans:
+
+library(stringr)
+ea=as.vector(unique(Aadhar$Enrolment.Agency))
+kol=vector()
+for(i in 1:length(ea)){
+  lek=str_length(ea[i])
+    jhsj=(sapply(regmatches(ea[i],gregexpr("[A-Z]",ea[i],perl = TRUE)),length))
+    if(jhsj>3){
+      kol=c(kol,ea[i])
+    }
+}
+cat("Enrollment agencies which has more than three upper-case letters are:")
+print(kol)
+----------------------------------------------------------------------------------------------
+11.	Print all the rows from the registrar column where state name is available.(Ex: -Atalji Janasnehi Directorate  Government of Karnataka)…...
+Ans:
+
+library(stringr)
+ree=as.vector(unique(Aadhar$Registrar))
+tryj=ree
+for(i in 1:length(ree)){
+  ree[i]=str_split(ree[i]," ")
+}
+stt=as.vector(unique(Aadhar$State))
+for(i in 1:length(ree)){
+  kk=length(ree[[i]])
+  for(j in 1:length(stt)){
+    if(stt[j] %in% ree[[i]]){
+      print(tryj[[i]])
+    }
+  }
+}
+--------------------------------------------------------------------------------
+12.	Print total count of District in state wise and find which state having maximum and minimu district…...
+Ans:
+
+rti=Aadhar$State
+thu=Aadhar$District
+lmo=(unique(rti))
+hufu=data.frame(rti,thu)
+for(i in 1:length(lmo)){
+  lkijer=unique(subset(hufu$thu,hufu$rti==lmo[i]))
+  print("no.of districts in State")
+  print(lmo[i])
+  print("is")
+  print(length(lkijer))
+}
+--------------------------------------------------------------
+13.	Print all the rows from the column district and sub district which contain the common name…..
+Ans:
+
+AaDis=Aadhar$District
+AaSubDi=Aadhar$Sub.District
+ko=data.frame(x,y)
+z=sort(unique(subset(x,ko$x %in% ko$y)))
+print("Districts with same name in sub districts is:")
+print(z)
+----------------------------------------------------------------------------------
+14.	 Print all the pincode which contains at lest one zero (0)……...
+Ans:
+
+library(stringr)
+reep=as.vector(unique(Aadhar$PinCode))
+tryj=reep
+for(i in 1:length(reep)){
+  reep[i]=str_split(reep[i],"")
+}
+kli=c(0)
+kli=as.vector(kli)
+koop=vector()
+for(i in 1:length(reep)){
+  kk=length(reep[[i]])
+  for(j in 1:kk){
+    if(kli[] %in% reep[[i]][j]){
+      koop=c(koop,tryj[[i]])
+    }
+  }
+}
+koop=unique(sort(koop))
+print("Pincodes which contain atleast one zero is:")
+print(koop)
+---------------------------------------------------------------------------
+15.	Print all the pincode which contains two zero(0) together…..
+Ans:
+
+library(stringr)
+library(hash)
+UniPiins=as.vector(as.character(unique(Aadhar$PinCode)))
+DupOFPiins=UniPiins
+UniPiins=as.vector(str_split(UniPiins,""))
+PinEmyVec1=as.vector(c(0))
+PinEmyVec2=vector()
+length(UniPiins)
+for(i in 1:length(UniPiins)){
+  for(j in 1:length(UniPiins[[i]])){
+    if(UniPiins[[i]][j] %in% PinEmyVec1[]){
+      PinEmyVec2=c(PinEmyVec2,DupOFPiins[[i]])
+      PinEmyVec1=vector()
+    }else{
+      PinEmyVec1=vector()
+      if(UniPiins[[i]][j]==0){
+      PinEmyVec1=c(PinEmyVec1,UniPiins[[i]][j])
+      }
+    }
+  }
+}
+print("pin codes with consecutive 0[zero] elements are ")
+print(unique(PinEmyVec2))
+-----------------------------------------------------------------
+16.	 Print Maximum count of pincode wise………..
+Ans:
+
+Pincode=Aadhar$PinCode
+PincodeSorted=sort(Pincode)
+View(PincodeSorted)
+ll=(table(PincodeSorted))
+print("Max Count of pincode ascending order is")
+print(ll)
+-----------------------------------------------------------------------------------------
+17.	Print which state having maximum and minimum aadhar card for Male and Female……..
+Ans:
+
+library(stringr)
+genderState=as.vector(Aadhar$Gender)
+States=as.vector(Aadhar$State)
+Aadhargenerated=Aadhar$Aadhaar.generated
+dataFrame=data.frame(genderState,States,Aadhargenerated)
+UniqueState=as.vector(unique(States))
+sortedState=sort(UniqueState)
+print("Total number of MALES present in state is")
+print(table(subset(dataFrame$States,dataFrame$genderState=='M')))
+print("Total number of FEMALES present in state is")
+print(table(subset(dataFrame$States,dataFrame$genderState=='F')))
+print("Total number of TRANS present in state is")
+print(table(subset(dataFrame$States,dataFrame$genderState=='T')))
+print("state with max male with generated aadhar count is:")
+maxmale=as.vector(table(subset(dataFrame$States,dataFrame$genderState=='M' & dataFrame$Aadhargenerated==1)))
+maxmale=as.array(maxmale)
+MaxmaleValue=max(maxmale)
+maxMaleState=paste(maxmale,sortedState)
+maxMaleState=str_split(maxMaleState," ")
+for(j in 1:37 ){
+  for(i in 1:37){
+  if(maxmale[i] %in%  maxMaleState[[j]][] & maxmale[i]==MaxmaleValue){
+    
+    print(maxMaleState[j])
+  }
+}
+}
+print("state with max female with generated aadhar count is:")
+maxfemale=as.vector(table(subset(dataFrame$States,dataFrame$genderState=='F' & dataFrame$Aadhargenerated==1)))
+maxfemale=as.array(maxfemale)
+MaxfemaleValue=max(maxfemale)
+maxFemaleState=paste(maxfemale,sortedState)
+maxFemaleState=str_split(maxFemaleState," ")
+for(j in 1:37 ){
+  for(i in 1:37){
+    if(maxfemale[i] %in%  maxFemaleState[[j]][] & maxfemale[i]==MaxfemaleValue){
+      
+      print(maxFemaleState[j])
+    }
+  }
+}
+-------------------------------------------------------------------------------------
+18.	Print total count of aadhar card where age is < 10 and between 20 to 40……….
+Ans:
+
+v=Aadhar$Age
+w=Aadhar$Aadhaar.generated
+rr=data.frame(v,w)
+rrr=subset(rr$w,rr$v<10 & rr$w==1)
+print("total count of aadhar generated for age<10 is")
+print(length(rrr))
+rrrr=subset(rr$w,(rr$v>20 & rr$v<40 & rr$w==1))
+print("total count of aadhar generated for between 20 and 40")
+print(length(rrrr))
+-----------------------------------------------------------------------------------
+19.	Print the District name where age is lower…...
+Ans:
+
+dataFrameDA=data.frame(Aadhar$District,Aadhar$Age)
+ListOfDistricts=subset(dataFrameDA$Aadhar.District,dataFrameDA$Aadhar.Age<1)
+listOfDistrictsLow=table(ListOfDistricts)
+print("districts with age lower than 1 are")
+print(listOfDistrictsLow)
+-----------------------------------------------------------------------------------------
+20.	Print the district which generated maximum no of aadhar card from the column Aadhar Generated…..
+Ans:
+
+Districts=Aadhar$District
+AadharGiven=Aadhar$Aadhaar.generated
+DataFrameA=data.frame(Districts,AadharGiven)
+listOfAadhar=subset(DataFrameA$Districts,DataFrameA$AadharGiven>=1)
+listOfAadharTab=(table(listOfAadhar))
+for(i in 1:length(listOfAadharTab)){
+  if(listOfAadharTab[i]==max(listOfAadharTab)){
+    print("State with most generated Aadhar is:")
+    print(listOfAadharTab[i])
+  }
+}
+---------------------------------------------------------------------------------------
+21.	Print in which state maximum and minimum enrolment has rejected from the column Enrolment rejected…..
+Ans:
+
+StatesOfAadhar=Aadhar$State
+RejectedAadhar=Aadhar$Enrolment.Rejected
+df=data.frame(StatesOfAadhar,RejectedAadhar)
+View(df)
+Tabe=(subset(df$StatesOfAadhar,df$RejectedAadhar>=1))
+ta=table(Tabe)
+taa=as.vector(ta)
+taa=taa[!taa %in% 0]
+for(i in 1:length(ta)){
+  if(ta[i]==max(ta)){
+    print("State with most rejected Aadhar is:")
+    print(ta[i])
+  }
+}
+for(i in 1:length(ta)){
+  if(ta[i]==min(ta)){
+    print("State with less rejected Aadhar is:")
+    print(ta[i])
+  }
+}
+for(i in 1:length(taa)){
+  if(taa[i]==min(taa)){
+    print("State with less rejected Aadhar (not others) is:")
+    print(ta[i])
+  }
+}
+------------------------------------------------------------------------------
+22.	Count all the value of 0 and 1 from the last column so that it will shows how many has given the mobile no in the time of enrolment…...
+Ans:
+
+cat("count of 0's in column Residents.providing.mobile.number is:",length(subset(Aadhar$Residents.providing.mobile.number,Aadhar$Residents.providing.mobile.number<1)))
+cat("count of 1's in column Residents.providing.mobile.number is:",length(subset(Aadhar$Residents.providing.mobile.number,Aadhar$Residents.providing.mobile.number==1)))
+
+
